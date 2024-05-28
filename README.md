@@ -66,17 +66,19 @@ Different Type of Instruction Sets:
 *Used for arithmetic and logical instructions.
 *Format: opcode [6:0] | rd [11:7] | funct3 [14:12] | rs1 [19:15] | rs2 [24:20] | funct7 [31:25]
 *Example: add x1, x2, x3 (adds the values in registers x2 and x3, and stores the result in x1)
+
 opcode: 0110011
 funct7: 0000000
 rs2: 00011 (x3)
 rs1: 00010 (x2)
 funct3: 000
-rd: 00001 (x1)
+rd: 00001 (x1)'
 
 # I-type (Immediate)
 *Used for arithmetic instructions with immediate values, load instructions, and some system instructions.
 *Format: opcode [6:0] | rd [11:7] | funct3 [14:12] | rs1 [19:15] | imm [31:20]
 *Example: addi x1, x2, 10 (adds the value in register x2 with the immediate value 10, and stores the result in x1)
+
 opcode: 0010011
 imm: 000000001010 (10)
 rs1: 00010 (x2)
@@ -87,6 +89,7 @@ rd: 00001 (x1)
 *Used for store instructions.
 *Format: opcode [6:0] | imm[4:0] [11:7] | funct3 [14:12] | rs1 [19:15] | rs2 [24:20] | imm[11:5] [31:25]
 *Example: sw x1, 8(x2) (stores the value in register x1 into the memory address computed as x2 + 8)
+
 opcode: 0100011
 imm[4:0]: 01000 (8)
 rs2: 00001 (x1)
@@ -98,6 +101,7 @@ imm[11:5]: 0000000
 *Used for conditional branch instructions.
 *Format: opcode [6:0] | imm[11] [7] | imm[4:1] [11:8] | funct3 [14:12] | rs1 [19:15] | rs2 [24:20] | imm[10:5] [30:25] | imm[12] [31]
 *Example: beq x1, x2, label (branches to label if the values in registers x1 and x2 are equal)
+
 opcode: 1100011
 imm[11]: 0
 imm[4:1]: 0000
@@ -111,6 +115,7 @@ imm[12]: 0
 *Used for instructions that operate with a 20-bit immediate that is shifted left by 12 bits (e.g., lui and auipc).
 *Format: opcode [6:0] | rd [11:7] | imm [31:12]
 *Example: lui x1, 0x12345 (loads the upper 20 bits of x1 with the value 0x12345)
+
 opcode: 0110111
 imm: 00010010001101000101 (0x12345)
 rd: 00001 (x1)
@@ -119,6 +124,7 @@ rd: 00001 (x1)
 *Used for jump and link instructions (jal).
 *Format: opcode [6:0] | rd [11:7] | imm[19:12] [19:12] | imm[11] [20] | imm[10:1] [30:21] | imm[20] [31]
 *Example: jal x1, label (jumps to label and stores the return address in x1)
+
 opcode: 1101111
 imm[19:12]: 00000000
 imm[11]: 0
